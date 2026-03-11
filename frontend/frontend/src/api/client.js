@@ -1,4 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+const DEFAULT_PROD_API_BASE_URL = 'https://e-commerce-application-lcuf.onrender.com'
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? DEFAULT_PROD_API_BASE_URL : '')
 
 const isJsonResponse = (contentType) =>
   typeof contentType === 'string' && contentType.includes('application/json')
@@ -47,4 +49,3 @@ export const apiFetch = async (path, { token, ...options } = {}) => {
 
   return data
 }
-

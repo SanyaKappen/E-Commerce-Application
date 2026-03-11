@@ -5,8 +5,13 @@ const Product = require('./models/product')
 const products = require('./data/products')
 
 const connect = async () => {
+  const isProd = process.env.NODE_ENV === 'production'
   const mongoUri =
-    process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/ECommmerce'
+    process.env.MONGO_URI || (isProd ? '' : 'mongodb://127.0.0.1:27017/ECommmerce')
+
+  if (!mongoUri) {
+    throw new Error('Missing required env var: MONGO_URI')
+  }
   await mongoose.connect(mongoUri)
 }
 
@@ -42,4 +47,3 @@ const run = async () => {
 }
 
 run()
-
