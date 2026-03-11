@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased;
+  }
+
+  ::selection {
+    background: rgba(52, 211, 153, 0.28);
+  }
+}
